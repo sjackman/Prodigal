@@ -417,10 +417,11 @@ void score_nodes(unsigned char *seq, unsigned char *rseq, int slen,
     if(nod[i].edge == 0 && edge_gene == 1) 
       nod[i].uscore -= 0.5*EDGE_BONUS*tinf->st_wt;
 
-    /* Penalize non-edge genes < 250bp */
-    if(edge_gene == 0 && abs(nod[i].ndx-nod[i].stop_val) < 250) {
-      negf = 250.0/(float)abs(nod[i].ndx-nod[i].stop_val);
-      posf = (float)abs(nod[i].ndx-nod[i].stop_val)/250.0;
+    /* Penalize short non-edge genes */
+    const unsigned SHORT_CDS = 100;
+    if(edge_gene == 0 && abs(nod[i].ndx-nod[i].stop_val) < SHORT_CDS) {
+      negf = (float)SHORT_CDS/(float)abs(nod[i].ndx-nod[i].stop_val);
+      posf = (float)abs(nod[i].ndx-nod[i].stop_val)/(float)SHORT_CDS;
       if(nod[i].rscore < 0) nod[i].rscore *= negf; 
       if(nod[i].uscore < 0) nod[i].uscore *= negf; 
       if(nod[i].tscore < 0) nod[i].tscore *= negf; 

@@ -265,8 +265,8 @@ to this node, which may contain multiple possible motifs; for the non-SD motif
 organisms, the motif and spacer will be exactly determined), the spacer, the
 score for this motif, the upstream score for the -1/-2 and -15 to -45 region,
 and the type score for ATG/GTG/TTG.  Normally, the sum of the last three scores
-will be the same as the start score, but this score is penalized for genes less
-than 250bp.
+will be the same as the start score, but this score is penalized for short
+genes.
 
 The dynamic programming also includes some contextual factors not displayed in 
 this file, such as operon distances, overlaps, etc., so the highest scoring
